@@ -1,0 +1,12 @@
+{{!-- Exemplo abaixo de como chamar uma action --}}
+
+{{!-- <h1>Number: {{this.number}}</h1>
+<button {{on "click" this.addNumber}}>Add</button> --}}
+
+{{!-- LinkTo leva a um componente --}}
+{{!-- @route leva pra rota de mesmo nome e o @model leva pro id da rota caso tenha --}}
+<LinkTo @route="item" @model="1" class="product">
+  {{!-- forma de chamar componentes aninhados --}}
+  <Product::Image/>
+  <Product::Details/>
+</LinkTo>

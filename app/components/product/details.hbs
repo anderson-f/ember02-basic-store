@@ -1,0 +1,33 @@
+  <div class="product-details">
+    {{!-- Header --}}
+    <section>
+      <h3>Beats solo Wireless Headphones</h3>
+      <div class="text-warning">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+    </section>
+    {{!-- Price --}}
+    <section>
+      <del class="small text-black-50">$199.95</del>
+      <i class="text-danger font-weight-bold">$99.98</i>
+    </section>
+
+    <div>
+      <h5>Color</h5>
+      {{!-- a cor foi passada pelo pai eu recebo aqui e chamo color --}}
+      <div class="product-colors active-{{@color}}">
+
+        {{!-- essa sintaxe (fn onChangeColor "red") é a forma de passar uma um parametro pra função
+        pelo template --}}
+        {{!-- fn é um helper do ember --}}
+        <span class="product-color color-red"
+          {{on "click" (fn @onChangeColor "red")}}></span>
+        <span class="product-color color-black"
+          {{on "click" (fn @onChangeColor "black")}}></span>
+      </div>
+  </div>
+  </div>
