@@ -5,8 +5,13 @@
 
 {{!-- LinkTo leva a um componente --}}
 {{!-- @route leva pra rota de mesmo nome e o @model leva pro id da rota caso tenha --}}
-<LinkTo @route="item" @model="1" class="product">
+<LinkTo @route="item" @model={{@product.id}} class="product">
   {{!-- forma de chamar componentes aninhados --}}
-  <Product::Image/>
-  <Product::Details/>
+  {{!-- esse this.productImage vem do index que foi passado ao product  e no javascript
+  do product foi definido o productImage --}}
+  <Product::Image @src={{this.productImage}}/>
+  <Product::Details
+    @name={{@product.name}}
+    @price={{@product.price}}
+  />
 </LinkTo>

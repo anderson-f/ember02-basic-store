@@ -11,4 +11,7 @@ export default class ProductComponent extends Component {
   addNumber() {
     this.number = this.number + 1;
   } */
+
+  /* forma de acessar o produto q foi passado como props no index */
+  productImage = this.args.product.colors[0].image;
 }

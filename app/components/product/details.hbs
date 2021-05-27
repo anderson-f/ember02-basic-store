@@ -1,7 +1,7 @@
   <div class="product-details">
     {{!-- Header --}}
     <section>
-      <h3>Beats solo Wireless Headphones</h3>
+      <h3>{{@name}}</h3>
       <div class="text-warning">
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
@@ -11,23 +11,34 @@
       </div>
     </section>
     {{!-- Price --}}
-    <section>
-      <del class="small text-black-50">$199.95</del>
-      <i class="text-danger font-weight-bold">$99.98</i>
+    {{!-- o preço fica maior na home --}}
+    <section class={{unless @isDetails 'h4'}}>
+      <del class="small text-black-50">{{currency @price.original}}</del>
+      <i class="text-danger font-weight-bold">{{@price.current}}</i>
     </section>
 
-    <div>
-      <h5>Color</h5>
-      {{!-- a cor foi passada pelo pai eu recebo aqui e chamo color --}}
-      <div class="product-colors active-{{@color}}">
-
-        {{!-- essa sintaxe (fn onChangeColor "red") é a forma de passar uma um parametro pra função
-        pelo template --}}
-        {{!-- fn é um helper do ember --}}
-        <span class="product-color color-red"
-          {{on "click" (fn @onChangeColor "red")}}></span>
-        <span class="product-color color-black"
-          {{on "click" (fn @onChangeColor "black")}}></span>
+    {{!-- só renderizar ao escolha de cor no detalhe --}}
+    {{#if @isDetails}}
+    <div class="d-flex justify-content-between align-items-end">
+      <div>
+        <h5>Color</h5>
+        {{!-- a cor foi passada pelo pai eu recebo aqui e chamo color --}}
+        <div class="product-colors active-{{@color}}">
+            {{!-- essa sintaxe (fn onChangeColor "red") é a forma de passar uma um parametro pra função
+            pelo template --}}
+            {{!-- fn é um helper do ember --}}
+          {{#each @colors as |colorInfo|}}
+            <span class="product-color {{concat 'color-' colorInfo.color}}"
+              {{on "click" (fn @onChangeColor colorInfo.color)}}></span>
+          {{/each}}
+        </div>
       </div>
-  </div>
+      {{!-- botão que chama a função addToCart no javascript de details --}}
+      <button class="btn btn-info" type="button" {{on "click" this.addToCart}}>
+        <i class="fa fa-shopping-cart mr-1"></i>
+        Add to cart
+      </button>
+    </div>
+    {{/if}}
+
   </div>

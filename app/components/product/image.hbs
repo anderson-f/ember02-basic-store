@@ -1,3 +1,4 @@
-<div class="product-image">
+{{!-- O template da rota item passou a função toggleZoom como props e aqui eu uso ela --}}
+<div class="product-image" {{on "click" @toggleZoom }}>
   <img src={{@src}} alt="">
 </div>
