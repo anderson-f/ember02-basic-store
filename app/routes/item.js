@@ -1,10 +1,21 @@
 import Route from '@ember/routing/route';
-import { products } from '../data/products';
+import { inject as service } from '@ember/service';
+
+// import { products } from '../data/products';
 export default class ItemRoute extends Route {
-  model(params) {
+  @service store; // para aplicar o conceito de model
+
+  async model(params) {
     const { item_id } = params;
+
+    const data = await this.store.findAll('product');
+
+    // jeito sem ember data
+    // const response = await fetch('/api/items.json')
+    // const { data } = await response.json();
+
     // buscando o id dentro da lista de products em data
-    const product = products.find(({ id }) => id === item_id);
+    const product = data.find(({ id }) => id === item_id);
     return product;
   }
 
